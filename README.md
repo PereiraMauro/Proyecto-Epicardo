@@ -1,4 +1,4 @@
-# Epiccito 🚀
+# Epicardo 🚀
 
 Extensión para Epic Games Store que muestra precios finales en ARS con impuestos.  
 Proyecto de la materia **Metodologías Ágiles para Desarrollo de Software**.
