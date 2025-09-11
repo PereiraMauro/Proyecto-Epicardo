@@ -17,9 +17,9 @@ Debe funcionar como extensión en navegadores soportados (Chrome, Firefox, Edge)
 
 ⚙️ Configuración del usuario
 
-El usuario debe poder activar o desactivar la extensión en cualquier momento.
+ El usuario debe poder activar o desactivar la extensión en cualquier momento.
 
-El usuario debe poder cambiar manualmente la cotización si lo desea.
+ El usuario debe poder cambiar manualmente la cotización si lo desea.
 
 🌎 Soporte de distintas regiones
 El sistema debe poder adaptarse a las políticas impositivas de Argentina.
@@ -54,4 +54,5 @@ El sistema debe estar preparado para adaptarse a nuevos impuestos, monedas o int
 
 ⏱️ Disponibilidad
 La extensión debe estar disponible al menos el 99% del tiempo, salvo en actualizaciones.
+
 
