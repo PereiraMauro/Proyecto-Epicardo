@@ -27,6 +27,8 @@ El sistema debe poder adaptarse a las políticas impositivas de Argentina.
 👀 Visibilidad en distintas secciones
 Los precios finales deben mostrarse tanto en la página del producto, como en listas de búsqueda, carritos y ofertas.
 
+
+
 🛡️ Requerimientos No Funcionales
 
 🖥️ Usabilidad
@@ -52,3 +54,4 @@ El sistema debe estar preparado para adaptarse a nuevos impuestos, monedas o int
 
 ⏱️ Disponibilidad
 La extensión debe estar disponible al menos el 99% del tiempo, salvo en actualizaciones.
+
