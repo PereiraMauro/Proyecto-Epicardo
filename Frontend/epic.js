@@ -1,62 +1,94 @@
-let cotizaciones = {}; // Objeto global con las cotizaciones
+// IVA e impuestos
+const IVA = 0.21;
+let impuestoProvincial = 0.02; // 2%
 
-// === Cargar cotizaciones desde el backend ===
+// Variable global para cotizaciones
+let cotizaciones = {};
+
+// ================================
+// Cargar cotizaciones desde backend
+// ================================
 async function cargarCotizaciones() {
   try {
     const resp = await fetch("http://localhost:3000/api/cotizaciones");
-    const raw = await resp.json();
+    const data = await resp.json();
+    cotizaciones = data;
 
-    // Guardamos las cotizaciones tal cual vienen
-    cotizaciones = raw;
-    window.cotizaciones = cotizaciones; // Para debug en consola
+    console.log("Datos recibidos del backend:", data);
 
-    console.log("✅ Datos recibidos del backend:", cotizaciones);
+    // Mostrar en la interfaz
+    document.getElementById("dolar-oficial").innerText = `$ ${data.oficial}`;
+    document.getElementById("dolar-blue").innerText = `$ ${data.blue}`;
+    document.getElementById("dolar-tarjeta").innerText = `$ ${data.tarjeta}`;
+    document.getElementById("dolar-mayorista").innerText = `$ ${data.mayorista}`;
+    document.getElementById("dolar-cripto").innerText = `$ ${data.cripto}`;
 
-    // Actualizar UI de referencia
-    document.getElementById("dolar-oficial").innerText = `$${cotizaciones.oficial}`;
-    document.getElementById("dolar-mayorista").innerText = `$${cotizaciones.mayorista}`;
     document.getElementById("fecha").innerText = new Date().toLocaleString();
-
   } catch (err) {
-    console.error("❌ Error al cargar cotizaciones:", err);
+    console.error("Error al cargar cotizaciones:", err);
   }
 }
 
-// === Calculadora de precios ===
+// ================================
+// Calcular precio en pesos
+// ================================
 function calcularPrecio() {
-  const tipo = document.getElementById("tipo-dolar").value; // clave: oficial, tarjeta, blue...
   const usd = parseFloat(document.getElementById("usd").value);
-
-  const resultadoDiv = document.getElementById("resultado");
+  const tipo = document.getElementById("tipo-dolar").value;
 
   if (!usd || usd <= 0) {
-    resultadoDiv.innerText = "⚠️ Ingresá un valor válido en USD.";
+    mostrarResultado(
+      `<p class="alerta">⚠️ Ingresá un valor válido en USD.</p>`,
+      null
+    );
     return;
   }
 
-  const valorDolar = cotizaciones[tipo];
-
-  if (!valorDolar) {
-    resultadoDiv.innerText = `⚠️ Cotización para "${tipo}" no disponible.`;
+  // Verificar cotización
+  const cotizacion = cotizaciones[tipo];
+  if (!cotizacion) {
+    mostrarResultado(
+      `<p class="alerta">⚠️ Cotización para "${tipo}" no disponible.</p>`,
+      null
+    );
     return;
   }
 
-  // Impuestos
-  const IVA = 0.21;
-  const IMP_PROV = 0.02;
-
-  const baseArs = usd * valorDolar;
+  // Cálculos
+  const baseArs = usd * cotizacion;
   const iva = baseArs * IVA;
-  const prov = baseArs * IMP_PROV;
-  const total = baseArs + iva + prov;
+  const prov = baseArs * impuestoProvincial;
+  const precioFinal = baseArs + iva + prov;
 
-  resultadoDiv.innerHTML = `
-    💵 Base: ARS $${baseArs.toFixed(0)} <br>
-    🏛️ IVA (21%): ARS $${iva.toFixed(0)} <br>
-    🏞️ Impuesto Provincial (2%): ARS $${prov.toFixed(0)} <br><br>
-    ✅ <b>Precio Final: ARS $${total.toFixed(0)}</b>
+  // Generar HTML del resultado
+  const html = `
+    <h3>📑 Resultado</h3>
+    <p><b class="dolar-${tipo}">${tipo.toUpperCase()}</b> ($ ${cotizacion})</p>
+    <p>💵 Base: $ ${baseArs.toLocaleString()}</p>
+    <p>🏛️ IVA (21%): $ ${iva.toLocaleString()}</p>
+    <p>🌐 Impuesto Provincial (2%): $ ${prov.toLocaleString()}</p>
+    <hr>
+    <p class="precio-final">✅ Precio Final: $ ${precioFinal.toLocaleString()}</p>
   `;
+
+  mostrarResultado(html, tipo);
 }
 
-// Ejecutar al cargar la página
+// ================================
+// Mostrar resultado con clase según tipo
+// ================================
+function mostrarResultado(html, tipo) {
+  const div = document.getElementById("resultado");
+  div.innerHTML = html;
+
+  // Resetear clases previas
+  div.className = "card resultado";
+  if (tipo) {
+    div.classList.add(tipo.toLowerCase());
+  }
+}
+
+// ================================
+// Inicializar
+// ================================
 document.addEventListener("DOMContentLoaded", cargarCotizaciones);

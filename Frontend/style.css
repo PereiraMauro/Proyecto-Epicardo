@@ -1,305 +1,191 @@
-/* ===== Epic Games Store-inspired palette ===== */
+/* ===========================
+   VARIABLES Y BASE
+   =========================== */
 :root {
-  --bg: #0f1115;
-  --card: #171c25;
-  --line: #2a2f3a;
-  --text: #e6e9ef;
-  --muted: #9aa3b2;
-  --accent: #2e8fff;
-  --accent-strong: #1f6fd6;
-  --accent-soft: #78b0ff;
-  --btn: #2e8fff;
-  --orange: #ffbf47;
+  --bg: #0e1520;
+  --card: #111a27;
+  --text: #e9f1fb;
+  --muted: #a3b5c8;
+  --accent: #19d4a6;
+  --line: #243447;
+  --btn: #1fa8ff;
+  --orange: #ff7a18;
 }
 
-/* Base */
-html,body{background:var(--bg);color:var(--text);}
-a{color:var(--text);opacity:.92;text-decoration:none}
-a:hover{opacity:1}
-.muted{color:var(--muted)}
-
-.container{max-width:1200px;margin:auto;padding:16px}
-
-/* Header */
-.glass-header{
-  position:sticky;top:0;z-index:10;
-  backdrop-filter:saturate(120%) blur(8px);
-  background:linear-gradient(180deg,rgba(10,12,16,.72),rgba(10,12,16,.50)) border-box;
-  border-bottom:1px solid var(--line);
+* {
+  box-sizing: border-box;
 }
-.logo{font-weight:800;letter-spacing:.2px}
 
-/* Nav */
-nav{display:flex;gap:20px}
-nav a{padding:10px 6px;border-radius:10px;transition:background .2s}
-nav a:hover{background:#111622}
-
-/* Cards */
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
-  padding:18px;
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.4 "Inter", system-ui, Arial, sans-serif;
 }
-.card.alt{background:var(--card-2)}
 
-/* Layout grid (Calculadora + Radar) */
+a {
+  color: var(--text);
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.container {
+  max-width: 1150px;
+  margin: auto;
+  padding: 20px;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajusta el tamaño mínimo y máximo */
-  gap: 24px; /* Espaciado entre las celdas */
-  align-items: start; /* Alinea las celdas al inicio */
-}
-@media (max-width: 980px){ .grid{grid-template-columns:1fr} }
-
-/* Form controls */
-label{display:block;margin:0 0 6px 2px;font-weight:600;color:var(--text)}
-input,select{
-  background:#0c111a;
-  color:var(--text);
-  border:1px solid #2b3341;
-  border-radius:12px;
-  padding:12px 14px;
-  outline:none;
-  transition:border-color .15s, box-shadow .15s;
-  width:100%;
-}
-input::placeholder{color:#697386}
-input:focus,select:focus{
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(46,143,255,.25);
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-/* Calculadora - grid interno */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-grid .narrow{max-width:220px}
-@media (max-width:640px){
-  .form-grid{grid-template-columns:1fr}
-  .form-grid .narrow{max-width:100%}
+/* ===========================
+   HEADER
+   =========================== */
+header {
+  background: var(--card);
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
 }
 
-/* Switches */
-.switch{display:inline-flex;align-items:center;gap:10px;margin-right:16px}
-.switch input{display:none}
-.switch .slider{
-  position:relative;display:inline-block;width:42px;height:24px;
-  background:#0e1420;border:1px solid #2b3341;border-radius:30px;
-  vertical-align:middle;transition:background .2s,border-color .2s;
-}
-.switch .slider::after{
-  content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;
-  background:#95a0b3;transition:transform .2s, background .2s;
-}
-.switch input:checked + .slider{background:var(--accent);border-color:var(--accent-2)}
-.switch input:checked + .slider::after{transform:translateX(18px);background:#0b1220}
-
-/* Buttons */
-.primary{
-  background:var(--accent);
-  color:#0b1220;
-  border:none;border-radius:12px;
-  padding:7px 7px;font-weight:800;
-  box-shadow:0 8px 24px rgba(46,143,255,.25);
-  cursor:pointer;transition:transform .05s ease, background .2s, box-shadow .2s;
-}
-.primary:hover{background:var(--accent-2);box-shadow:0 12px 28px rgba(31,111,214,.28)}
-.primary:active{transform:translateY(1px)}
-
-/* Radar cards */
-.radar-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajusta el tamaño mínimo y máximo */
-  gap: 16px; /* Espaciado entre tarjetas */
+header .logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent);
 }
 
-.radar-card {
-  position: relative;
-  height: 220px; /* Ajusta el tamaño de las tarjetas */
+header nav a {
+  margin-left: 20px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+header nav a:hover {
+  opacity: 1;
+}
+
+/* ===========================
+   CARDS
+   =========================== */
+.card {
+  background: var(--card);
+  padding: 20px;
   border-radius: 12px;
-  overflow: hidden;
-  background: #0e1420;
-  border: 1px solid var(--line);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.radar-card.lg {
-  height: 300px; /* Tamaño más grande para tarjetas destacadas */
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
 }
 
-.radar-card .overlay {
-  position: absolute;
-  inset: 0;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background: linear-gradient(180deg, rgba(10, 12, 16, 0) 0%, rgba(10, 12, 16, 0.85) 80%);
+/* ===========================
+   FORMULARIO
+   =========================== */
+.form {
+  margin: 10px 0;
 }
 
-.radar-card h3 {
-  margin: 0 0 4px;
-  font-size: 16px; /* Ajusta el tamaño del texto */
-  letter-spacing: 0.25px;
-  text-transform: uppercase;
-  color: #ffd86b;
-}
-
-.radar-card p {
-  margin: 0;
-  font-size: 14px; /* Ajusta el tamaño del texto */
-  color: var(--muted);
-}
-
-.ghost {
-  margin-top: 8px;
-  display: inline-block;
+.form input,
+.form select {
+  width: 100%;
+  padding: 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 6px 8px;
-  font-size: 12px; /* Ajusta el tamaño del texto */
+  margin-bottom: 10px;
+  background: #0b111b;
+  color: var(--text);
 }
 
-.ghost:hover {
-  border-color: #3a4150;
-}
-
-/* Footer */
-footer{margin:28px 0 10px;color:var(--muted)}
-/* Contenedor principal y tarjetas */
-html,body{background:var(--bg);color:var(--text)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
-.card.alt{background:#151a22}
-
-/* Grilla de la calculadora: columnas proporcionadas y alineación al borde inferior */
-.form-grid{
-  display:grid;
-  grid-template-columns: 1.2fr 240px;
-  gap:16px;
-  align-items:end;
-}
-.form-grid .narrow{max-width:240px}
-
-/* Inputs más compactos y prolijos */
-label{display:block;margin:0 0 6px 2px;font-weight:700}
-input, select{
-  width:100%; height:44px;
-  background:#0c111a; color:var(--text);
-  border:1px solid #2b3341; border-radius:12px;
-  padding:0 14px; outline:none;
-  transition:border-color .15s, box-shadow .15s;
-}
-input::placeholder{color:#6c7890}
-input:focus, select:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(46,143,255,.18)}
-
-/* Botón: limpio, sin “glow gigante”, tamaño consistente con inputs */
-.primary.calcular-btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  height:44px; padding:0 18px; margin-top:14px;
-  background:var(--btn); color:#0b1220; font-weight:800;
-  border:none; border-radius:12px; cursor:pointer;
-  box-shadow:none; transition:background .2s, transform .05s;
-}
-.primary.calcular-btn:hover{background:var(--accent-strong)}
-.primary.calcular-btn:active{transform:translateY(1px)}
-
-/* Resultado */
-.total{font-size:28px; font-weight:800; margin-top:8px}
-
-/* Responsive: en pantallas chicas, 1 columna y botón full width */
-@media (max-width: 720px){
-  .form-grid{grid-template-columns:1fr}
-  .form-grid .narrow{max-width:100%}
-  .primary.calcular-btn{width:100%}
-}
-
-/* Ajustes para la calculadora */
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px; /* Espaciado entre el input y el botón */
-  max-width: 400px; /* Limita el ancho de la calculadora */
-  margin: auto; /* Centra la calculadora */
-}
-
-input#usd {
+.form button {
   width: 100%;
-  height: 44px; /* Ajusta la altura del input */
-  background: #0c111a;
-  color: var(--text);
-  border: 1px solid #2b3341;
-  border-radius: 12px;
-  padding: 0 14px;
-  outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-input#usd::placeholder {
-  color: #697386;
-}
-
-input#usd:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(46, 143, 255, 0.25);
-}
-
-button {
-  height: 44px; /* Ajusta la altura del botón */
-  background: var(--btn);
-  color: #0b1220;
+  padding: 10px;
   border: none;
-  border-radius: 12px;
-  font-weight: 800;
+  background: var(--btn);
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.05s;
 }
 
-button:hover {
-  background: var(--accent-strong);
+.form button:hover {
+  opacity: 0.9;
 }
 
-button:active {
-  transform: translateY(1px);
+/* ===========================
+   RESULTADO
+   =========================== */
+.card.resultado {
+  margin-top: 20px;
+  border-radius: 12px;
+  padding: 20px;
+  background: #0f1b28;
+  border: 2px solid var(--line);
 }
 
-/* Quienes Somos */
-.quienes-somos {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 24px;
-  margin-top: 32px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  grid-column: span 2; /* Ocupa el ancho completo en la grilla */
-  text-align: center; /* Centra el contenido */
-}
-
-.quienes-somos h2 {
-  font-size: 24px;
-  font-weight: 800;
-  margin-bottom: 16px;
-  color: var(--text);
-}
-
-.quienes-somos p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--muted);
+.card.resultado h3 {
   margin-bottom: 12px;
+  font-size: 1.2rem;
 }
 
-.quienes-somos ul {
-  list-style: none;
-  padding: 0;
-}
-
-.quienes-somos ul li {
-  font-size: 16px;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.quienes-somos ul li::before {
-  content: "✅";
-  margin-right: 8px;
+.card.resultado .precio-final {
+  font-weight: bold;
   color: var(--accent);
+  font-size: 1.2rem;
+}
+
+/* Colores dinámicos según tipo */
+.card.resultado.oficial {
+  border-top: 6px solid #19d4a6;
+}
+
+.card.resultado.blue {
+  border-top: 6px solid #3fa9f5;
+}
+
+.card.resultado.tarjeta {
+  border-top: 6px solid #9b59b6;
+}
+
+.card.resultado.mayorista {
+  border-top: 6px solid #95a5a6;
+}
+
+.card.resultado.cripto {
+  border-top: 6px solid #f39c12;
+}
+
+/* ===========================
+   LISTA DE COTIZACIONES
+   =========================== */
+.dolar-oficial {
+  color: #19d4a6;
+  font-weight: 600;
+}
+.dolar-blue {
+  color: #3fa9f5;
+  font-weight: 600;
+}
+.dolar-tarjeta {
+  color: #9b59b6;
+  font-weight: 600;
+}
+.dolar-mayorista {
+  color: #95a5a6;
+  font-weight: 600;
+}
+.dolar-cripto {
+  color: #f39c12;
+  font-weight: 600;
+}
+
+/* ===========================
+   ALERTA
+   =========================== */
+.alerta {
+  color: #ff4d4d;
+  font-weight: bold;
 }
