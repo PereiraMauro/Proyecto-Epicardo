@@ -189,3 +189,15 @@ h2 {
   color: #ff4d4d;
   font-weight: bold;
 }
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  letter-spacing: .2px;
+  gap: 8px; /* espacio entre logo e texto */
+}
+
+.logo-img {
+  height: 110px; /* ajusta el tamaño del logo */
+  width: auto;
+}
