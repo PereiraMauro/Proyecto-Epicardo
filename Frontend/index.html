@@ -3,38 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EPICARDO</title>
+  <title>EPICARDO - Calculadora Epic Games</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
-  <header class="glass-header">
+  <!-- Header compacto -->
+  <header class="main-header">
     <div class="container between center">
-      <h1 class="logo">
-        <img src="logo.png" alt="Epicardo Logo" class="logo-img">
-      <nav>
+      <div class="logo-area">
+        <img src="logo.png" alt="EPICARDO Logo" class="logo-img">
+        <h1 class="logo-text">EPICARDO</h1>
+      </div>
+      <nav class="nav-links">
         <a href="index.html">Inicio</a>
         <a href="radar.html">Radar</a>
       </nav>
     </div>
   </header>
 
+  <!-- Contenido principal -->
   <main class="container grid">
     <!-- Columna izquierda: Calculadora -->
     <section class="card calculadora fade-in">
       <h2>🧮 Calculadora de Precios</h2>
       <p>Convertí precios de Epic Games a pesos argentinos con IVA e impuestos provinciales.</p>
+
+      <label for="tipo-dolar">Tipo de dólar:</label>
+      <select id="tipo-dolar">
+        <option value="oficial">💵 Dólar Oficial</option>
+        <option value="blue">🟣 Dólar Blue</option>
+        <option value="tarjeta">💳 Dólar Tarjeta</option>
+        <option value="mayorista">🏛️ Dólar Mayorista</option>
+        <option value="cripto">🪙 Dólar Cripto</option>
+      </select>
+
       <div class="form">
-        <label for="tipo-dolar">Tipo de dólar:</label>
-        <select id="tipo-dolar">
-          <option value="oficial">💵 Dólar Oficial</option>
-          <option value="blue">🕶️ Dólar Blue</option>
-          <option value="tarjeta">💳 Dólar Tarjeta</option>
-          <option value="mayorista">🏛️ Dólar Mayorista</option>
-          <option value="cripto">🪙 Dólar Cripto</option>
-        </select>
-        <br><br>
         <input type="number" id="usd" placeholder="Precio en USD">
         <button onclick="calcularPrecio()">Calcular</button>
       </div>
@@ -44,24 +49,29 @@
     <section class="card cotizaciones fade-in">
       <h2>📊 Cotizaciones de referencia</h2>
       <ul>
-        <li class="oficial">💵 Dólar Oficial: <span id="dolar-oficial">Cargando...</span></li>
-        <li class="blue">🕶️ Dólar Blue: <span id="dolar-blue">Cargando...</span></li>
-        <li class="tarjeta">💳 Dólar Tarjeta: <span id="dolar-tarjeta">Cargando...</span></li>
-        <li class="mayorista">🏛️ Dólar Mayorista: <span id="dolar-mayorista">Cargando...</span></li>
-        <li class="cripto">🪙 Dólar Cripto: <span id="dolar-cripto">Cargando...</span></li>
+        <li>💵 Dólar Oficial: <span id="dolar-oficial">Cargando...</span></li>
+        <li>🟣 Dólar Blue: <span id="dolar-blue">Cargando...</span></li>
+        <li>💳 Dólar Tarjeta: <span id="dolar-tarjeta">Cargando...</span></li>
+        <li>🏛️ Dólar Mayorista: <span id="dolar-mayorista">Cargando...</span></li>
+        <li>🪙 Dólar Cripto: <span id="dolar-cripto">Cargando...</span></li>
       </ul>
       <p class="muted">Actualizado: <span id="fecha"></span></p>
     </section>
 
-    <!-- Resultado -->
-    <section class="card resultado-final fade-in">
+    <!-- Bloque resultado -->
+    <section class="card resultado fade-in">
       <h2>🧾 Resultado</h2>
       <div id="resultado" class="resultado-box">
-        ⚠️ Ingresá un valor válido en USD.
+        <p>⚠️ Ingresá un valor y seleccioná tipo de dólar para calcular.</p>
       </div>
     </section>
   </main>
 
   <script src="epic.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("fecha").innerText = new Date().toLocaleString();
+    });
+  </script>
 </body>
 </html>
