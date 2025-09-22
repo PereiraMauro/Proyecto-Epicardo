@@ -24,6 +24,13 @@
       <h2>🧮 Calculadora de Precios</h2>
       <p>Convertí precios de Epic Games a pesos argentinos con IVA e impuestos provinciales.</p>
       <div class="form">
+        <label for="tipo-dolar">Tipo de dólar:</label>
+        <select id="tipo-dolar">
+          <option value="oficial">💵 Dólar Oficial</option>
+          <option value="tarjeta">💳 Dólar Tarjeta</option>
+          <option value="blue">🕶️ Dólar Blue</option>
+        </select>
+        <br><br>
         <input type="number" id="usd" placeholder="Precio en USD">
         <button onclick="calcularPrecio()">Calcular</button>
       </div>
