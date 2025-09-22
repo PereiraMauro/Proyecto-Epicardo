@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPICARDO - Calculadora Epic Games</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="glass-header">
+    <div class="container between center">
+      <h1 class="logo">EPICARDO</h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="radar.html">Radar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container grid">
+    <!-- Columna izquierda: Calculadora -->
+    <section class="card calculadora fade-in">
+      <h2>🧮 Calculadora de Precios</h2>
+      <p>Convertí precios de Epic Games a pesos argentinos con IVA e impuestos provinciales.</p>
+      <div class="form">
+        <input type="number" id="usd" placeholder="Precio en USD">
+        <button onclick="calcularPrecio()">Calcular</button>
+      </div>
+      <div id="resultado" class="resultado"></div>
+    </section>
+
+    <!-- Columna derecha: Cotizaciones -->
+    <section class="card cotizaciones fade-in">
+      <h2>📊 Cotizaciones de referencia</h2>
+      <ul>
+        <li>💵 Dólar Oficial: <span id="dolar-oficial">Cargando...</span></li>
+        <li>🏛️ Dólar Mayorista: <span id="dolar-mayorista">Cargando...</span></li>
+      </ul>
+      <p class="muted">Actualizado: <span id="fecha"></span></p>
+    </section>
+    
+    <!-- Bloque informativo -->
+    <section class="card promo fade-in quienes-somos">
+      <div class="promo-content">
+        <div class="promo-text">
+          <h2>📌 EPICARDO tu calculadora de confianza</h2>
+          <p>
+            Navegá por la tienda de Epic Games con precios aproximados en pesos argentinos, 
+            cotización del dólar oficial, IVA e impuestos provinciales actualizados.
+          </p>
+          <ul>
+            <li>✅ Libre y gratuita desde 2025</li>
+            <li>✅ Colaborativa y de código abierto</li>
+            <li>✅ Hecha para la comunidad gamer argentina</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="epic.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("fecha").innerText = new Date().toLocaleString();
+    });
+  </script>
+</body>
+</html>
