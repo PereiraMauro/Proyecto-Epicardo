@@ -30,13 +30,12 @@
       <h2>🧮 Calculadora de Precios</h2>
       <p>Convertí precios de Epic Games a pesos argentinos con IVA e impuestos provinciales.</p>
 
-      <label for="tipo-dolar">Tipo de dólar:</label>
-      <select id="tipo-dolar">
-        <option value="oficial">💵 Dólar Oficial</option>
-        <option value="blue">🟣 Dólar Blue</option>
-        <option value="tarjeta">💳 Dólar Tarjeta</option>
-        <option value="mayorista">🏛️ Dólar Mayorista</option>
-        <option value="cripto">🪙 Dólar Cripto</option>
+      <label for="tipo-pago">Método de pago:</label>
+      <select id="tipo-pago">
+        <option value="mercadopago">💳 Mercado Pago</option>
+        <option value="astroplay">🎮 AstroPay</option>
+        <option value="tarjeta_pesos">💵 Tarjeta en pesos</option>
+        <option value="tarjeta_usd">💲 Tarjeta en dólares</option>
       </select>
 
       <div class="form">
@@ -49,11 +48,10 @@
     <section class="card cotizaciones fade-in">
       <h2>📊 Cotizaciones de referencia</h2>
       <ul>
-        <li>💵 Dólar Oficial: <span id="dolar-oficial">Cargando...</span></li>
-        <li>🟣 Dólar Blue: <span id="dolar-blue">Cargando...</span></li>
-        <li>💳 Dólar Tarjeta: <span id="dolar-tarjeta">Cargando...</span></li>
-        <li>🏛️ Dólar Mayorista: <span id="dolar-mayorista">Cargando...</span></li>
-        <li>🪙 Dólar Cripto: <span id="dolar-cripto">Cargando...</span></li>
+        <li>💳 Mercado Pago: <span id="mercadopago">Cargando...</span></li>
+        <li>🎮 AstroPay: <span id="astroplay">Cargando...</span></li>
+        <li>💵 Tarjeta en pesos: <span id="tarjeta-pesos">Cargando...</span></li>
+        <li>💲 Tarjeta en dólares: <span id="tarjeta-usd">Cargando...</span></li>
       </ul>
       <p class="muted">Actualizado: <span id="fecha"></span></p>
     </section>
@@ -62,7 +60,7 @@
     <section class="card resultado fade-in">
       <h2>🧾 Resultado</h2>
       <div id="resultado" class="resultado-box">
-        <p>⚠️ Ingresá un valor y seleccioná tipo de dólar para calcular.</p>
+        <p>⚠️ Ingresá un valor y seleccioná método de pago para calcular.</p>
       </div>
     </section>
   </main>

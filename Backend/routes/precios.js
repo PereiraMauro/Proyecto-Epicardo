@@ -1,11 +1,11 @@
+// routes/precios.js
 import express from "express";
 import { obtenerCotizacion } from "../services/apiCotizacion.js";
 import { calcularPrecioFinal } from "../services/impuestos.js";
-import fetch from "node-fetch";
 
 const router = express.Router();
 
-// ✅ Endpoint actual
+// Calcula un precio final según método de pago
 router.get("/precio/:usd", async (req, res) => {
   try {
     const usd = parseFloat(req.params.usd);
@@ -13,36 +13,36 @@ router.get("/precio/:usd", async (req, res) => {
       return res.status(400).json({ error: "El valor debe ser un número" });
     }
 
-    const tipo = req.query.tipo || "tarjeta";
+    const tipo = req.query.tipo || "tarjeta_pesos";
     const cotizacion = await obtenerCotizacion(tipo);
-    console.log(`💲 Cotización usada (${tipo}):`, cotizacion);
-
     if (!cotizacion) {
       return res.status(500).json({ error: "No se pudo obtener la cotización" });
     }
 
-    const resultado = calcularPrecioFinal(usd, cotizacion);
-    res.json({ tipo, ...resultado });
+    const resultado = calcularPrecioFinal(usd, cotizacion, tipo);
+    res.json({ tipo, cotizacion, ...resultado });
   } catch (error) {
     console.error("Error en /precio:", error);
     res.status(500).json({ error: "Error en el cálculo" });
   }
 });
 
-// ✅ Nuevo endpoint: devuelve todas las cotizaciones crudas
-router.get("/cotizaciones", async (req, res) => {
+// Cotizaciones de referencia (para el panel derecho)
+router.get("/cotizaciones", async (_req, res) => {
   try {
-    const url = "https://criptoya.com/api/dolar";
-    const resp = await fetch(url);
-    const data = await resp.json();
+    const oficial = await obtenerCotizacion("tarjeta_pesos"); // base oficial
+    const mercadopago = await obtenerCotizacion("mercadopago");
+    const astroplay = await obtenerCotizacion("astroplay");
 
-    res.json({
-      oficial: data.oficial?.price || null,
-      blue: data.blue?.ask || null,
-      tarjeta: data.tarjeta?.price || null,
-      mayorista: data.mayorista?.price || null,
-      cripto: data.cripto?.usdt?.ask || null
-    });
+    const refs = {
+      mercadopago: mercadopago ?? null,
+      astroplay: astroplay ?? null,
+      // mostramos las referencias ya con impuestos integrados
+      tarjeta_pesos: oficial != null ? Number((oficial * (1 + 0.21 + 0.30 + 0.45)).toFixed(2)) : null,
+      tarjeta_usd:   oficial != null ? Number((oficial * (1 + 0.21)).toFixed(2)) : null,
+    };
+
+    res.json(refs);
   } catch (error) {
     console.error("Error en /cotizaciones:", error);
     res.status(500).json({ error: "No se pudieron obtener las cotizaciones" });

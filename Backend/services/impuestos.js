@@ -1,18 +1,23 @@
-export function calcularPrecioFinal(usd, cotizacion) {
+// services/impuestos.js
+export function calcularPrecioFinal(usd, cotizacion, tipo = "tarjeta_pesos") {
   if (!cotizacion) {
-    return {
-      base: null,
-      iva: null,
-      pais: null,
-      percepcion: null,
-      total: null
-    };
+    return { base: null, iva: null, pais: null, percepcion: null, total: null };
   }
 
   const precioBase = usd * Number(cotizacion);
-  const iva = precioBase * 0.21;
-  const pais = precioBase * 0.30;
-  const percepcion = precioBase * 0.45;
+
+  let iva = 0, pais = 0, percepcion = 0;
+
+  // ✅ Solo aplicamos impuestos a MercadoPago y Tarjeta en pesos
+  if (tipo === "mercadopago" || tipo === "tarjeta_pesos") {
+    iva = precioBase * 0.21;
+    pais = precioBase * 0.30;
+    percepcion = precioBase * 0.45;
+  }
+
+  // ✅ AstroPay y Tarjeta en dólares → sin impuestos
+  // (ya quedan todos en 0)
+
   const total = precioBase + iva + pais + percepcion;
 
   return {
@@ -23,3 +28,4 @@ export function calcularPrecioFinal(usd, cotizacion) {
     total: total.toFixed(2)
   };
 }
+

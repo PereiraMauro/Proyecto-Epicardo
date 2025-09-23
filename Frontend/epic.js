@@ -1,8 +1,12 @@
+// ================================
+// epic.js (Frontend)
+// ================================
+
 // IVA e impuestos
 const IVA = 0.21;
-let impuestoProvincial = 0.02; // 2%
+const impuestoProvincial = 0.02;
 
-// Variable global para cotizaciones
+// Cotizaciones globales
 let cotizaciones = {};
 
 // ================================
@@ -14,90 +18,90 @@ async function cargarCotizaciones() {
     const data = await resp.json();
     cotizaciones = data;
 
-    console.log("Datos recibidos del backend:", data);
+    console.log("💲 Cotizaciones cargadas:", data);
 
-    // Mostrar en la interfaz
-    document.getElementById("dolar-oficial").innerText = `$ ${data.oficial}`;
-    document.getElementById("dolar-blue").innerText = `$ ${data.blue}`;
-    document.getElementById("dolar-tarjeta").innerText = `$ ${data.tarjeta}`;
-    document.getElementById("dolar-mayorista").innerText = `$ ${data.mayorista}`;
-    document.getElementById("dolar-cripto").innerText = `$ ${data.cripto}`;
+    // Mostrar en la UI
+    document.getElementById("mercadopago").innerText = `$ ${data.mercadopago}`;
+    document.getElementById("astroplay").innerText = `$ ${data.astroplay}`;
+    document.getElementById("tarjeta-pesos").innerText = `$ ${data.tarjeta_pesos}`;
+    document.getElementById("tarjeta-usd").innerText = `$ ${data.tarjeta_usd}`;
 
     document.getElementById("fecha").innerText = new Date().toLocaleString();
   } catch (err) {
-    console.error("Error al cargar cotizaciones:", err);
+    console.error("⚠️ Error al cargar cotizaciones:", err);
   }
 }
 
 // ================================
 // Calcular precio en pesos
 // ================================
-function calcularPrecio() {
+async function calcularPrecio() {
   const usd = parseFloat(document.getElementById("usd").value);
-  const tipo = document.getElementById("tipo-dolar").value;
+  const tipo = document.getElementById("tipo-pago").value;
 
   if (!usd || usd <= 0) {
-    mostrarResultado(
-      `<p class="alerta">⚠️ Ingresá un valor válido en USD.</p>`,
-      null
-    );
+    mostrarResultado(`<p class="alerta">⚠️ Ingresá un valor válido en USD.</p>`);
     return;
   }
 
-  // Verificar cotización
-  const cotizacion = cotizaciones[tipo];
-  if (!cotizacion) {
-    mostrarResultado(
-      `<p class="alerta">⚠️ Cotización para "${tipo}" no disponible.</p>`,
-      null
-    );
-    return;
+  try {
+    // Pido al backend que haga el cálculo con impuestos
+    const resp = await fetch(`http://localhost:3000/api/precio/${usd}?tipo=${tipo}`);
+    const data = await resp.json();
+
+    if (data.error) {
+      mostrarResultado(`<p class="alerta">⚠️ ${data.error}</p>`);
+      return;
+    }
+
+    // Mostrar resultado
+    const html = `
+      <h3>📑 Resultado</h3>
+      <p><b>${formatearNombre(tipo)}</b> ($ ${cotizaciones[tipo]})</p>
+      <p>💵 Base: $ ${data.base}</p>
+      <p>🏛️ IVA (21%): $ ${data.iva}</p>
+      <p>🌐 Impuesto PAÍS (30%): $ ${data.pais}</p>
+      <p>📊 Percepción (45%): $ ${data.percepcion}</p>
+      <hr>
+      <p class="precio-final">✅ Precio Final: $ ${data.total}</p>
+    `;
+
+    mostrarResultado(html);
+  } catch (err) {
+    console.error("⚠️ Error en calcularPrecio:", err);
+    mostrarResultado(`<p class="alerta">⚠️ Error en la consulta</p>`);
   }
-
-  // Cálculos
-  const baseArs = usd * cotizacion;
-  const iva = baseArs * IVA;
-  const prov = baseArs * impuestoProvincial;
-  const precioFinal = baseArs + iva + prov;
-
-  // Generar HTML del resultado
-  const html = `
-    <h3>📑 Resultado</h3>
-    <p><b class="dolar-${tipo}">${tipo.toUpperCase()}</b> ($ ${cotizacion})</p>
-    <p>💵 Base: $ ${baseArs.toLocaleString()}</p>
-    <p>🏛️ IVA (21%): $ ${iva.toLocaleString()}</p>
-    <p>🌐 Impuesto Provincial (2%): $ ${prov.toLocaleString()}</p>
-    <hr>
-    <p class="precio-final">✅ Precio Final: $ ${precioFinal.toLocaleString()}</p>
-  `;
-
-  mostrarResultado(html, tipo);
 }
 
 // ================================
-// Mostrar resultado con clase según tipo
+// Mostrar resultado
 // ================================
-function mostrarResultado(html, tipo) {
+function mostrarResultado(html) {
   const div = document.getElementById("resultado");
   div.innerHTML = html;
+}
 
-  // Resetear clases previas
-  div.className = "card resultado";
-  if (tipo) {
-    div.classList.add(tipo.toLowerCase());
+// ================================
+// Helper nombres bonitos
+// ================================
+function formatearNombre(tipo) {
+  switch (tipo) {
+    case "mercadopago": return "Mercado Pago";
+    case "astroplay": return "AstroPay";
+    case "tarjeta_pesos": return "Tarjeta en pesos";
+    case "tarjeta_usd": return "Tarjeta en dólares";
+    default: return tipo;
   }
 }
 
 // ================================
 // Inicializar
 // ================================
-document.addEventListener("DOMContentLoaded", cargarCotizaciones);
-
-
-// Animaciones al hacer scroll
 document.addEventListener("DOMContentLoaded", () => {
-  const faders = document.querySelectorAll(".fade-in");
+  cargarCotizaciones();
 
+  // Animaciones de aparición
+  const faders = document.querySelectorAll(".fade-in");
   const appearOptions = {
     threshold: 0.2,
     rootMargin: "0px 0px -50px 0px"
@@ -111,8 +115,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, appearOptions);
 
-  faders.forEach(fader => {
-    appearOnScroll.observe(fader);
-  });
+  faders.forEach(fader => appearOnScroll.observe(fader));
 });
-// ================================
