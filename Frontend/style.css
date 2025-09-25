@@ -23,7 +23,6 @@ html, body {
 }
 
 /* ---------------- HEADER ---------------- */
-
 .main-header {
   background: #0b111a;
   border-bottom: 1px solid var(--line);
@@ -51,7 +50,7 @@ html, body {
 .logo-text {
   font-size: 20px;
   font-weight: 800;
-  color: var(--accent);  /* Ahora celeste */
+  color: var(--accent);
 }
 
 .nav-links {
@@ -111,9 +110,9 @@ input, select {
   padding: 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #0b111a;      /* Fondo oscuro */
-  color: var(--text);       /* Texto claro */
-  appearance: none;         /* Saca el estilo por defecto */
+  background: #0b111a;
+  color: var(--text);
+  appearance: none;
   font-size: 14px;
 }
 
@@ -141,12 +140,20 @@ button:hover {
   grid-column: 1 / span 2;
 }
 
-.resultado-box {
+#resultado {
   margin-top: 10px;
   padding: 15px;
   border-radius: 10px;
   background: #0d1928;
   border: 1px solid var(--line);
+  border-top: 6px solid transparent;
+  box-shadow: 0 3px 10px rgba(0,0,0,.25);
+}
+
+#resultado hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 10px 0;
 }
 
 .resultado-box p {
@@ -177,7 +184,6 @@ button:hover {
   box-shadow: 0 6px 18px rgba(0,0,0,0.5);
 }
 
-
 /* ------------------- RADAR ------------------- */
 .radar-container {
   display: grid;
@@ -186,7 +192,6 @@ button:hover {
   margin-top: 20px;
 }
 
-/* Cada tarjeta del radar */
 .radar-card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -198,14 +203,12 @@ button:hover {
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-/* Hover con más vida */
 .radar-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(31, 168, 255, 0.3); /* sombra azulada */
-  border-color: var(--accent); /* borde celeste */
+  box-shadow: 0 6px 20px rgba(31, 168, 255, 0.3);
+  border-color: var(--accent);
 }
 
-/* Título del radar */
 .radar-card h3 {
   font-size: 18px;
   font-weight: 700;
@@ -214,8 +217,6 @@ button:hover {
   transition: color 0.25s ease;
 }
 
-
-/* Botón */
 .radar-card a {
   margin-top: 15px;
   padding: 10px;
@@ -235,65 +236,35 @@ button:hover {
   border-color: var(--accent);
 }
 
-
-/* ===========================
-   Colores dinámicos según tipo de dólar
-   =========================== */
-.dolar-oficial {
-  color: #19d4a6;
-  font-weight: 600;
-}
-
-.dolar-blue {
-  color: #3fa9f5;
-  font-weight: 600;
-}
-
-.dolar-tarjeta {
-  color: #9b59b6;
-  font-weight: 600;
-}
-
-.dolar-mayorista {
-  color: #95a5a6;
-  font-weight: 600;
-}
-
-.dolar-cripto {
-  color: #f39c12;
-  font-weight: 600;
-}
-
-/* ===== Top bar de color en el resultado (#resultado) ===== */
+/* ===== Estilo base del resultado ===== */
 #resultado {
   margin-top: 10px;
   padding: 15px;
   border-radius: 10px;
   background: #0d1928;
   border: 1px solid var(--line);
-  border-top: 6px solid transparent; /* se colorea según el tipo */
+  border-top: 6px solid transparent;
   box-shadow: 0 3px 10px rgba(0,0,0,.25);
+  transition: all 0.3s ease;
 }
 
-#resultado.oficial   { border-top-color: #19d4a6; box-shadow: 0 3px 14px rgba(25,212,166,.15); }
-#resultado.blue      { border-top-color: #3fa9f5; box-shadow: 0 3px 14px rgba(63,169,245,.15); }
-#resultado.tarjeta   { border-top-color: #9b59b6; box-shadow: 0 3px 14px rgba(155,89,182,.15); }
-#resultado.mayorista { border-top-color: #95a5a6; box-shadow: 0 3px 14px rgba(149,165,166,.15); }
-#resultado.cripto    { border-top-color: #f39c12; box-shadow: 0 3px 14px rgba(243,156,18,.15); }
+/* ===== Variantes según tipo de dólar ===== */
+#resultado.mercadopago {
+  border-top: 6px solid #3498db;
+  box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+}
 
-/* Línea divisoria dentro del resultado */
-#resultado hr { border: 0; border-top: 1px solid var(--line); margin: 10px 0; }
+#resultado.astroplay {
+  border-top: 6px solid #9b59b6;
+  box-shadow: 0 0 15px rgba(155, 89, 182, 0.5);
+}
 
-/* ===== Colores dinámicos (texto) ya clásico ===== */
-.dolar-oficial   { color:#19d4a6; font-weight:600; }
-.dolar-blue      { color:#3fa9f5; font-weight:600; }
-.dolar-tarjeta   { color:#9b59b6; font-weight:600; }
-.dolar-mayorista { color:#95a5a6; font-weight:600; }
-.dolar-cripto    { color:#f39c12; font-weight:600; }
+#resultado.tarjeta_pesos {
+  border-top: 6px solid #ff7a18;
+  box-shadow: 0 0 15px rgba(255, 122, 24, 0.5);
+}
 
-/* ===== Colorear también los números de la tarjeta de cotizaciones ===== */
-#dolar-oficial   { color:#19d4a6; }
-#dolar-blue      { color:#3fa9f5; }
-#dolar-tarjeta   { color:#9b59b6; }
-#dolar-mayorista { color:#95a5a6; }
-#dolar-cripto    { color:#f39c12; }
+#resultado.tarjeta_usd {
+  border-top: 6px solid #19d4a6;
+  box-shadow: 0 0 15px rgba(25, 212, 166, 0.5);
+}

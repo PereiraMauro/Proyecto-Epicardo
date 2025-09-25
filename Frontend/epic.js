@@ -2,6 +2,9 @@
 // epic.js (Frontend)
 // ================================
 
+// IVA fijo
+const IVA = 0.21;
+
 // Cotizaciones globales
 let cotizaciones = {};
 
@@ -16,13 +19,13 @@ async function cargarCotizaciones() {
 
     console.log("💲 Cotizaciones cargadas:", data);
 
-    // Mostrar en la UI
-    document.getElementById("mercadopago").innerText = `$ ${data.mercadopago}`;
-    document.getElementById("astroplay").innerText = `$ ${data.astroplay}`;
-    document.getElementById("tarjeta-pesos").innerText = `$ ${data.tarjeta_pesos}`;
-    document.getElementById("tarjeta-usd").innerText = `$ ${data.tarjeta_usd}`;
+    // Mostrar en la UI (formato argentino)
+    document.getElementById("mercadopago").innerText = `$ ${Number(data.mercadopago).toLocaleString("es-AR")}`;
+    document.getElementById("astroplay").innerText   = `$ ${Number(data.astroplay).toLocaleString("es-AR")}`;
+    document.getElementById("tarjeta-pesos").innerText = `$ ${Number(data.tarjeta_pesos).toLocaleString("es-AR")}`;
+    document.getElementById("tarjeta-usd").innerText   = `$ ${Number(data.tarjeta_usd).toLocaleString("es-AR")}`;
 
-    document.getElementById("fecha").innerText = new Date().toLocaleString();
+    document.getElementById("fecha").innerText = new Date().toLocaleString("es-AR");
   } catch (err) {
     console.error("⚠️ Error al cargar cotizaciones:", err);
   }
@@ -32,11 +35,11 @@ async function cargarCotizaciones() {
 // Calcular precio en pesos
 // ================================
 async function calcularPrecio() {
-  const usd = parseFloat(document.getElementById("usd").value);
+  const usd  = parseFloat(document.getElementById("usd").value);
   const tipo = document.getElementById("tipo-pago").value;
 
   if (!usd || usd <= 0) {
-    mostrarResultado(`<p class="alerta">⚠️ Ingresá un valor válido en USD.</p>`);
+    mostrarResultado(`<p class="alerta">⚠️ Ingresá un valor válido en USD.</p>`, "");
     return;
   }
 
@@ -45,41 +48,46 @@ async function calcularPrecio() {
     const data = await resp.json();
 
     if (data.error) {
-      mostrarResultado(`<p class="alerta">⚠️ ${data.error}</p>`);
+      mostrarResultado(`<p class="alerta">⚠️ ${data.error}</p>`, "");
       return;
     }
 
-    const { cotizacion, base, iva, total } = data;
+    const cotizacion = Number(data.cotizacion);
+    const base = Number(data.base);
+    const iva  = Number(data.iva);
+    const total = Number(data.total);
 
-    let html = `
+    // Render condicional del IVA: solo si es mayor a 0
+    const ivaLine = iva > 0
+      ? `<p>🏛️ IVA (21%): $ ${iva.toLocaleString("es-AR")}</p>`
+      : "";
+
+    const html = `
       <h3>📑 Resultado</h3>
-      <p><b>${formatearNombre(tipo)}</b> ($ ${cotizacion})</p>
-      <p>💵 Base: $ ${base}</p>
-    `;
-
-    // Mostrar IVA si aplica
-    if (iva && parseFloat(iva) > 0) {
-      html += `<p>🏛️ IVA (21%): $ ${iva}</p>`;
-    }
-
-    html += `
+      <p><b>${formatearNombre(tipo)}</b> ($ ${cotizacion.toLocaleString("es-AR")})</p>
+      <p>💵 Base: $ ${base.toLocaleString("es-AR")}</p>
+      ${ivaLine}
       <hr>
-      <p class="precio-final">✅ Precio Final: $ ${total}</p>
+      <p class="precio-final">✅ Precio Final: $ ${total.toLocaleString("es-AR")}</p>
     `;
 
-    mostrarResultado(html);
+    mostrarResultado(html, tipo);
   } catch (err) {
     console.error("⚠️ Error en calcularPrecio:", err);
-    mostrarResultado(`<p class="alerta">⚠️ Error en la consulta</p>`);
+    mostrarResultado(`<p class="alerta">⚠️ Error en la consulta</p>`, "");
   }
 }
 
 // ================================
-// Mostrar resultado
+// Mostrar resultado con clase dinámica
 // ================================
-function mostrarResultado(html) {
+function mostrarResultado(html, tipo) {
   const div = document.getElementById("resultado");
   div.innerHTML = html;
+
+  // Resetear clases anteriores y aplicar color por tipo
+  div.className = "";
+  div.classList.add("resultado", tipo);
 }
 
 // ================================
@@ -87,11 +95,11 @@ function mostrarResultado(html) {
 // ================================
 function formatearNombre(tipo) {
   switch (tipo) {
-    case "mercadopago": return "Mercado Pago";
-    case "astroplay": return "AstroPay";
-    case "tarjeta_pesos": return "Tarjeta en pesos";
-    case "tarjeta_usd": return "Tarjeta en dólares";
-    default: return tipo;
+    case "mercadopago":  return "Mercado Pago";
+    case "astroplay":    return "AstroPay";
+    case "tarjeta_pesos":return "Tarjeta en pesos";
+    case "tarjeta_usd":  return "Tarjeta en dólares";
+    default:             return tipo;
   }
 }
 
@@ -101,8 +109,10 @@ function formatearNombre(tipo) {
 document.addEventListener("DOMContentLoaded", () => {
   cargarCotizaciones();
 
+  // Animaciones de aparición (si las usás)
   const faders = document.querySelectorAll(".fade-in");
   const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+
   const appearOnScroll = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
