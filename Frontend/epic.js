@@ -2,10 +2,6 @@
 // epic.js (Frontend)
 // ================================
 
-// IVA e impuestos
-const IVA = 0.21;
-const impuestoProvincial = 0.02;
-
 // Cotizaciones globales
 let cotizaciones = {};
 
@@ -45,7 +41,6 @@ async function calcularPrecio() {
   }
 
   try {
-    // Pido al backend que haga el cálculo con impuestos
     const resp = await fetch(`http://localhost:3000/api/precio/${usd}?tipo=${tipo}`);
     const data = await resp.json();
 
@@ -54,16 +49,22 @@ async function calcularPrecio() {
       return;
     }
 
-    // Mostrar resultado
-    const html = `
+    const { cotizacion, base, iva, total } = data;
+
+    let html = `
       <h3>📑 Resultado</h3>
-      <p><b>${formatearNombre(tipo)}</b> ($ ${cotizaciones[tipo]})</p>
-      <p>💵 Base: $ ${data.base}</p>
-      <p>🏛️ IVA (21%): $ ${data.iva}</p>
-      <p>🌐 Impuesto PAÍS (30%): $ ${data.pais}</p>
-      <p>📊 Percepción (45%): $ ${data.percepcion}</p>
+      <p><b>${formatearNombre(tipo)}</b> ($ ${cotizacion})</p>
+      <p>💵 Base: $ ${base}</p>
+    `;
+
+    // Mostrar IVA si aplica
+    if (iva && parseFloat(iva) > 0) {
+      html += `<p>🏛️ IVA (21%): $ ${iva}</p>`;
+    }
+
+    html += `
       <hr>
-      <p class="precio-final">✅ Precio Final: $ ${data.total}</p>
+      <p class="precio-final">✅ Precio Final: $ ${total}</p>
     `;
 
     mostrarResultado(html);
@@ -100,13 +101,8 @@ function formatearNombre(tipo) {
 document.addEventListener("DOMContentLoaded", () => {
   cargarCotizaciones();
 
-  // Animaciones de aparición
   const faders = document.querySelectorAll(".fade-in");
-  const appearOptions = {
-    threshold: 0.2,
-    rootMargin: "0px 0px -50px 0px"
-  };
-
+  const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
   const appearOnScroll = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;

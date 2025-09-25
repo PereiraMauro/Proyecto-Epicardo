@@ -5,7 +5,7 @@ import { calcularPrecioFinal } from "../services/impuestos.js";
 
 const router = express.Router();
 
-// Calcula un precio final según método de pago
+// ✅ Calcula un precio final según método de pago
 router.get("/precio/:usd", async (req, res) => {
   try {
     const usd = parseFloat(req.params.usd);
@@ -27,19 +27,18 @@ router.get("/precio/:usd", async (req, res) => {
   }
 });
 
-// Cotizaciones de referencia (para el panel derecho)
+// ✅ Cotizaciones de referencia (panel derecho)
 router.get("/cotizaciones", async (_req, res) => {
   try {
-    const oficial = await obtenerCotizacion("tarjeta_pesos"); // base oficial
+    const oficial = await obtenerCotizacion("oficial");
     const mercadopago = await obtenerCotizacion("mercadopago");
     const astroplay = await obtenerCotizacion("astroplay");
 
     const refs = {
       mercadopago: mercadopago ?? null,
       astroplay: astroplay ?? null,
-      // mostramos las referencias ya con impuestos integrados
-      tarjeta_pesos: oficial != null ? Number((oficial * (1 + 0.21 + 0.30 + 0.45)).toFixed(2)) : null,
-      tarjeta_usd:   oficial != null ? Number((oficial * (1 + 0.21)).toFixed(2)) : null,
+      tarjeta_pesos: oficial != null ? Number((oficial * (1 + 0.21)).toFixed(2)) : null, // IVA
+      tarjeta_usd: oficial != null ? Number((oficial * (1 + 0.21)).toFixed(2)) : null    // IVA
     };
 
     res.json(refs);
