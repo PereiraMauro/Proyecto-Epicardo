@@ -13,7 +13,7 @@ Como usuario, quiero ver los precios finales en ARS con impuestos incluidos, par
 Como usuario, quiero ver el desglose de los impuestos aplicados en mi compra, para entender el precio final.  
 
 ### Selector de tipo de dólar  
-Como usuario, quiero elegir el tipo de dólar (oficial, tarjeta, MEP), para calcular el precio final en ARS.  
+Como usuario, quiero elegir el tipo de dólar (tarjeta), para calcular el precio final en ARS.  
 
 ---
 
@@ -39,3 +39,4 @@ Como jugador, quiero dejar reseñas y puntuar los juegos, para compartir mi opin
 Como usuario, quiero que los montos siempre muestren “$” o “USD”, para no confundirme con las monedas.  
 
 ---
+
