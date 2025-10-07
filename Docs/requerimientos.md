@@ -4,7 +4,7 @@
 El sistema debe convertir los precios de los juegos de Epic Games a pesos argentinos en base a la cotización del dólar oficial.
 
 🧾 Cálculo de impuestos
-Debe sumar automáticamente todos los impuestos vigentes (IVA, PAIS, percepción de ganancias, etc.) al precio final.
+Debe sumar automáticamente todos los impuestos vigentes (IVA(21%)) al precio final.
 
 🔄 Actualización de cotización
 El sistema debe actualizar diariamente la cotización del dólar oficial de una fuente confiable.
@@ -54,5 +54,6 @@ El sistema debe estar preparado para adaptarse a nuevos impuestos, monedas o int
 
 ⏱️ Disponibilidad
 La extensión debe estar disponible al menos el 99% del tiempo, salvo en actualizaciones.
+
 
 
