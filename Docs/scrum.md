@@ -13,7 +13,7 @@
 ## Product Backlog
 1. juegos gratis semanales
 2. Cálculo automático con cotización del dólar (oficial, tarjeta, MEP, cripto)
-3. desglose de impuestos(IVA,PAIS,PERCEPCIONES)
+3. desglose de impuestos(IVA)
 4. Seleccionar  tipo de moneda
 5. ver precios en ARS con impuestos  
 6. beneficios/promociones destacadas.  
@@ -37,3 +37,4 @@
 ## Ceremonias SCRUM
 - **Sprint Planning:** se realizo la planificacion del sprint 1 definiendo roles, product Backlog y sprit Backlog.  
 ---
+
