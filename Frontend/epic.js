@@ -5,6 +5,11 @@
 // IVA fijo
 const IVA = 0.21;
 
+// Configuración de API
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+  ? 'http://localhost:3000'  // Desarrollo local
+  : 'https://epicardo-backend-production.up.railway.app'; // Producción (se actualizará después del deploy)
+
 // Cotizaciones globales
 let cotizaciones = {};
 
@@ -13,7 +18,7 @@ let cotizaciones = {};
 // ================================
 async function cargarCotizaciones() {
   try {
-    const resp = await fetch("http://localhost:3000/api/cotizaciones");
+    const resp = await fetch(`${API_BASE_URL}/api/cotizaciones`);
     const data = await resp.json();
     cotizaciones = data;
 
@@ -44,7 +49,7 @@ async function calcularPrecio() {
   }
 
   try {
-    const resp = await fetch(`http://localhost:3000/api/precio/${usd}?tipo=${tipo}`);
+    const resp = await fetch(`${API_BASE_URL}/api/precio/${usd}?tipo=${tipo}`);
     const data = await resp.json();
 
     if (data.error) {
