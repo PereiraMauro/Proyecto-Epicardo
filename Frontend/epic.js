@@ -8,7 +8,7 @@ const IVA = 0.21;
 // Configuración de API
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
   ? 'http://localhost:3000'  // Desarrollo local
-  : 'https://epicardo-backend-production.up.railway.app'; // Producción (se actualizará después del deploy)
+  : 'https://epicardo.up.railway.app'; // Producción
 
 // Cotizaciones globales
 let cotizaciones = {};

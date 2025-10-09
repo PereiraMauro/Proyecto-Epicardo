@@ -12,7 +12,8 @@ app.use(cors({
     "http://127.0.0.1:5500", 
     "http://localhost:5500",
     "https://epicardo.netlify.app",
-    "https://epicardo.vercel.app"
+    "https://epicardo.vercel.app",
+    "https://*.netlify.app"  // Permitir cualquier subdominio de Netlify
   ],
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"]
