@@ -123,3 +123,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   faders.forEach(fader => appearOnScroll.observe(fader));
 });
+// Detectar cuando el usuario hace scroll para mostrar la sección
+window.addEventListener("scroll", function () {
+  const section = document.querySelector(".como-funciona");
+  const rect = section.getBoundingClientRect();
+
+  // Cuando la sección esté visible en el viewport
+  if (rect.top < window.innerHeight - 150) {
+    section.classList.add("visible");
+  }
+});

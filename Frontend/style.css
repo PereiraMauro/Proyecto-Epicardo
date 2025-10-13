@@ -121,18 +121,20 @@ select {
 }
 
 button {
-  background: var(--accent);
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
+  background-color: #2196f3; /* color celeste actual */
   color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background: #0088dd;
+  background-color: #0d1117; /* el color de fondo oscuro */
+  color: #00bfff; /* celeste para el texto */
+  border: 1px solid #00bfff; /* opcional, para que resalte */
 }
 
 /* ---------------- RESULTADO ---------------- */
@@ -267,4 +269,113 @@ button:hover {
 #resultado.tarjeta_usd {
   border-top: 6px solid #19d4a6;
   box-shadow: 0 0 15px rgba(25, 212, 166, 0.5);
+}
+.cotizaciones {
+  position: relative;
+  overflow: hidden;
+  background-image: url("fondo.jpg"); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+}
+
+/* Capa oscura para que el texto se vea bien */
+.cotizaciones::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 30, 44, 0.863);
+  z-index: 0;
+  border-radius: 12px;
+}
+
+/* Hace que el texto quede por encima del fondo */
+.cotizaciones * {
+  position: relative;
+  z-index: 1;
+}
+
+/* === Sección "Cómo funciona" === */
+.como-funciona {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  background-color: #1b2838;
+  color: #fff;
+  padding: 80px 10%;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.como-funciona.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.como-funciona-texto {
+  flex: 1;
+}
+
+.como-funciona-texto h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.como-funciona-texto ol {
+  list-style: none;
+  counter-reset: item;
+}
+
+.como-funciona-texto li {
+  counter-increment: item;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.como-funciona-texto li::before {
+  content: counter(item) " ";
+  font-weight: bold;
+  color: #00adee;
+  margin-right: 10px;
+}
+
+.btn-funcionalidades {
+  margin-top: 30px;
+  background-color: #6ab04c;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-funcionalidades:hover {
+  background-color: #58a231;
+}
+
+.como-funciona-imgs {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a475e; /* 💙 color del recuadro tipo Steam */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+
+.como-funciona-imgs img {
+  width: 48%; /* cada imagen ocupa casi la mitad del espacio */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
 }
