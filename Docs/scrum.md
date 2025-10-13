@@ -23,7 +23,7 @@
 ---
 ## Sprint Backlog
 
-**Duración del sprint:** 2 semanas 
+**Duración del sprint 1:** 2 semanas 
 
 **Objetivos del Sprint 1:**  
 - Definir requerimientos funcionales no funcionales. 
@@ -37,4 +37,5 @@
 ## Ceremonias SCRUM
 - **Sprint Planning:** se realizo la planificacion del sprint 1 definiendo roles, product Backlog y sprit Backlog.  
 ---
+
 
