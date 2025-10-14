@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparador de Precios - Epicardo</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+  <header class="glass-header">
+    <div class="container between center">
+      <h1 class="logo">
+        <img src="logo.png" alt="Epicardo Logo" class="logo-img">
+      </h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="radar.html">Radar</a>
+        <a href="compare.html" class="active">Comparador</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="page-header">
+        <div class="page-image">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="80" height="80" rx="12" fill="url(#gradient0_linear_1_1)"/>
+            <path d="M20 25H60V35H20V25Z" fill="#19d4a6"/>
+            <path d="M20 45H60V55H20V45Z" fill="#1fa8ff"/>
+            <path d="M40 65H60V55H40V65Z" fill="#ff7a18"/>
+            <defs>
+              <linearGradient id="gradient0_linear_1_1" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#112a27"/>
+                <stop offset="1" stop-color="#0a111b"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="page-info">
+          <h1>🔍 Comparador de Precios</h1>
+          <p class="muted">Compará precios entre diferentes tiendas y encuentra las mejores ofertas</p>
+        </div>
+      </div>
+
+      <!-- Búsqueda de juegos -->
+      <div class="search-section">
+        <div class="search-container">
+          <input type="text" id="gameSearch" placeholder="Buscar juego..." class="search-input">
+          <button class="search-btn" onclick="searchGames()">🔍</button>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+
+      <!-- Comparación -->
+      <div class="comparison-section">
+        <div class="comparison-header">
+          <h2>📊 Comparación de Precios</h2>
+          <button class="btn-secondary" onclick="clearComparison()">Limpiar Todo</button>
+        </div>
+        
+        <div class="comparison-grid" id="comparisonGrid">
+          <div class="empty-comparison">
+            <div class="empty-icon">🎮</div>
+            <p>Agregá juegos para comparar precios</p>
+            <p class="muted">Usá la búsqueda de arriba para encontrar juegos</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estadísticas de comparación -->
+      <div class="comparison-stats" id="comparisonStats" style="display: none;">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-icon">💰</div>
+            <div class="stat-info">
+              <span class="stat-number" id="totalSavings">$0</span>
+              <span class="stat-label">Ahorro Total</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-info">
+              <span class="stat-number" id="bestDeals">0</span>
+              <span class="stat-label">Mejores Ofertas</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">📈</div>
+            <div class="stat-info">
+              <span class="stat-number" id="averageDiscount">0%</span>
+              <span class="stat-label">Descuento Promedio</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="games.js"></script>
+  <script src="compare.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

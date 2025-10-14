@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Epicardo</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+  <header class="glass-header">
+    <div class="container between center">
+      <h1 class="logo">
+        <img src="logo.png" alt="Epicardo Logo" class="logo-img">
+      </h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="radar.html">Radar</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Header del Dashboard -->
+    <section class="dashboard-header">
+      <div class="welcome-section">
+        <h1>📊 Dashboard de Epicardo</h1>
+        <p class="muted">Tu centro de control para ofertas y juegos</p>
+      </div>
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <div class="stat-icon">🎮</div>
+          <div class="stat-info">
+            <span class="stat-number" id="wishlistCount">0</span>
+            <span class="stat-label">Juegos en Wishlist</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-info">
+            <span class="stat-number" id="savedMoney">$0</span>
+            <span class="stat-label">Ahorrado</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔔</div>
+          <div class="stat-info">
+            <span class="stat-number" id="activeAlerts">0</span>
+            <span class="stat-label">Alertas Activas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenido Principal del Dashboard -->
+    <div class="dashboard-grid">
+      <!-- Mi Wishlist -->
+      <section class="dashboard-card">
+        <div class="card-header">
+          <h2>📋 Mi Wishlist</h2>
+          <a href="wishlist.html" class="card-link">Ver todas</a>
+        </div>
+        <div class="wishlist-preview" id="wishlistPreview">
+          <div class="empty-state">
+            <div class="empty-icon">📝</div>
+            <p>Tu wishlist está vacía</p>
+            <a href="radar.html" class="btn-secondary">Explorar juegos</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Alertas de Precio -->
+      <section class="dashboard-card">
+        <div class="card-header">
+          <h2>🔔 Alertas de Precio</h2>
+          <button class="btn-icon" onclick="addPriceAlert()">+</button>
+        </div>
+        <div class="alerts-list" id="alertsList">
+          <div class="empty-state">
+            <div class="empty-icon">🔔</div>
+            <p>No tienes alertas configuradas</p>
+            <button class="btn-secondary" onclick="addPriceAlert()">Crear alerta</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Historial de Precios -->
+      <section class="dashboard-card chart-card">
+        <div class="card-header">
+          <h2>📊 Historial de Precios</h2>
+          <select class="chart-selector" id="chartSelector">
+            <option value="7">Últimos 7 días</option>
+            <option value="30" selected>Últimos 30 días</option>
+            <option value="90">Últimos 3 meses</option>
+          </select>
+        </div>
+        <div class="chart-container">
+          <canvas id="priceChart" width="400" height="200"></canvas>
+        </div>
+      </section>
+
+      <!-- Recomendaciones -->
+      <section class="dashboard-card">
+        <div class="card-header">
+          <h2>🎯 Recomendaciones para ti</h2>
+          <a href="radar.html" class="card-link">Ver más</a>
+        </div>
+        <div class="recommendations-list" id="recommendationsList">
+          <div class="recommendation-item">
+            <img src="images/free-week.png" alt="Juego recomendado" class="rec-image">
+            <div class="rec-info">
+              <h4>Cyberpunk 2077</h4>
+              <p class="rec-price">$29.99 → $14.99</p>
+              <span class="rec-badge trending">50% OFF</span>
+            </div>
+          </div>
+          <div class="recommendation-item">
+            <img src="images/under-5.png" alt="Juego recomendado" class="rec-image">
+            <div class="rec-info">
+              <h4>The Witcher 3</h4>
+              <p class="rec-price">$19.99 → $9.99</p>
+              <span class="rec-badge hot">50% OFF</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Actividad Reciente -->
+      <section class="dashboard-card">
+        <div class="card-header">
+          <h2>📈 Actividad Reciente</h2>
+        </div>
+        <div class="activity-list" id="activityList">
+          <div class="activity-item">
+            <div class="activity-icon">➕</div>
+            <div class="activity-content">
+              <p>Agregaste <strong>Cyberpunk 2077</strong> a tu wishlist</p>
+              <span class="activity-time">Hace 2 horas</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">🔔</div>
+            <div class="activity-content">
+              <p>Creaste una alerta para <strong>The Witcher 3</strong></p>
+              <span class="activity-time">Hace 1 día</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">💰</div>
+            <div class="activity-content">
+              <p>Detectaste una oferta en <strong>Hades</strong> (-40%)</p>
+              <span class="activity-time">Hace 3 días</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Configuración Rápida -->
+      <section class="dashboard-card">
+        <div class="card-header">
+          <h2>⚙️ Configuración Rápida</h2>
+        </div>
+        <div class="quick-settings">
+          <div class="setting-item">
+            <label class="toggle-switch">
+              <input type="checkbox" id="emailAlerts" checked>
+              <span class="slider"></span>
+            </label>
+            <div class="setting-info">
+              <h4>Alertas por Email</h4>
+              <p>Recibir notificaciones cuando bajen los precios</p>
+            </div>
+          </div>
+          <div class="setting-item">
+            <label class="toggle-switch">
+              <input type="checkbox" id="pushNotifications" checked>
+              <span class="slider"></span>
+            </label>
+            <div class="setting-info">
+              <h4>Notificaciones Push</h4>
+              <p>Alertas en tiempo real en tu navegador</p>
+            </div>
+          </div>
+          <div class="setting-item">
+            <label class="toggle-switch">
+              <input type="checkbox" id="weeklyDigest">
+              <span class="slider"></span>
+            </label>
+            <div class="setting-info">
+              <h4>Resumen Semanal</h4>
+              <p>Recibir un resumen de ofertas cada semana</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal para agregar alerta -->
+  <div class="modal" id="alertModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🔔 Crear Alerta de Precio</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <form class="modal-form" id="alertForm">
+        <div class="form-group">
+          <label for="gameName">🎮 Nombre del Juego</label>
+          <input type="text" id="gameName" name="gameName" required placeholder="Ej: Cyberpunk 2077">
+        </div>
+        <div class="form-group">
+          <label for="targetPrice">💰 Precio Objetivo (USD)</label>
+          <input type="number" id="targetPrice" name="targetPrice" step="0.01" required placeholder="19.99">
+        </div>
+        <div class="form-group">
+          <label for="alertType">🔔 Tipo de Alerta</label>
+          <select id="alertType" name="alertType">
+            <option value="email">Email</option>
+            <option value="push">Notificación Push</option>
+            <option value="both">Ambos</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+          <button type="submit" class="btn-primary">Crear Alerta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

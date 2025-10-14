@@ -1,75 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EPICARDO - Radar de Ofertas</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <link rel="icon" type="image/png" href="logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epicardo</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header -->
-  <header class="main-header">
+  <header class="glass-header">
     <div class="container between center">
-      <div class="logo-area">
-        <img src="logo.png" alt="EPICARDO Logo" class="logo-img" />
-        <span class="logo-text">EPICARDO</span>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Inicio</a>
-        <a href="radar.html">Radar</a>
-      </nav>
+      <h1 class="logo">
+        <img src="logo.png" alt="Epicardo Logo" class="logo-img">
+      </h1>
+      <nav>
+  <a href="index.html">Inicio</a>
+  <a href="radar.html">Radar</a>
+</nav>
     </div>
   </header>
 
   <main class="container">
-    <!-- Título + intro en su propia card -->
     <section class="card">
-      <h2>📡 Radar de Ofertas</h2>
-      <p class="muted">Explorá nuestros recortes de precios, juegos gratis y joyitas destacadas.</p>
-    </section>
+      <h2>Radar de Ofertas</h2>
+      <p class="muted">Explorá nuestros recortes de precios, juegos gratis y joyitas.</p>
 
-    <!-- Grid de tarjetas -->
-    <section class="radar-container">
-      <article class="radar-card">
-        <h3>GRATIS DE LA SEMANA</h3>
-        <p>Todos los títulos que Epic regala esta semana.</p>
-        <a href="#" class="ghost">Ver ahora</a>
-      </article>
-
-      <article class="radar-card">
-        <h3>A MENOS DE 5 DÓLARES</h3>
-        <p>Juegos recomendados por menos de 5 USD.</p>
-        <a href="#" class="ghost">Ver lista</a>
-      </article>
-
-      <article class="radar-card">
-        <h3>A MENOS DE 2 DÓLARES</h3>
-        <p>Joyas ultra baratas que valen la pena.</p>
-        <a href="#" class="ghost">Ver lista</a>
-      </article>
-
-      <article class="radar-card">
-        <h3>JOYAS OCULTAS</h3>
-        <p>Descubrí juegos que quizás no viste.</p>
-        <a href="#" class="ghost">Ver lista</a>
-      </article>
-
-      <article class="radar-card">
-        <h3>CUANDO ESTÉN EN OFERTA</h3>
-        <p>Seguimiento de wishlist para comprar mejor.</p>
-        <a href="#" class="ghost">Ver lista</a>
-      </article>
-
-      <article class="radar-card">
-        <h3>FUTURAS PROMESAS</h3>
-        <p>Early Access con futuro.</p>
-        <a href="#" class="ghost">Ver lista</a>
-      </article>
+      <section class="radar-container">
+        <div class="radar-card">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077 - Juego gratis" class="radar-image" onerror="this.src='images/free-week.png'">
+          <h3>GRATIS DE LA SEMANA</h3>
+          <p>Todos los títulos que Epic regala esta semana</p>
+          <a href="free-week.html" class="ghost">Ver ahora</a>
+        </div>
+        <div class="radar-card">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/1145360/header.jpg" alt="Hades - Menos de $5" class="radar-image" onerror="this.src='images/under-5.png'">
+          <h3>A MENOS DE 5 DÓLARES</h3>
+          <p>Juegos recomendados por menos de 5 USD</p>
+          <a href="under-5.html" class="ghost">Ver lista</a>
+        </div>
+        <div class="radar-card">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/504230/header.jpg" alt="Celeste - Menos de $2" class="radar-image" onerror="this.src='images/under-2.png'">
+          <h3>A MENOS DE 2 DÓLARES</h3>
+          <p>Joyas ultra baratas que valen la pena</p>
+          <a href="under-2.html" class="ghost">Ver lista</a>
+        </div>
+        <div class="radar-card">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/753640/header.jpg" alt="Outer Wilds - Joya oculta" class="radar-image" onerror="this.src='images/hidden-gems.png'">
+          <h3>JOYAS OCULTAS</h3>
+          <p>Descubrí juegos que quizás no viste</p>
+          <a href="hidden-gems.html" class="ghost">Ver lista</a>
+        </div>
+        <div class="radar-card">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring - Wishlist" class="radar-image" onerror="this.src='images/wishlist.png'">
+          <h3>CUANDO ESTÉN EN OFERTA</h3>
+          <p>Seguimiento de wishlist para comprar mejor</p>
+          <a href="wishlist.html" class="ghost">Ver lista</a>
+        </div>
+        <div class="radar-card">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg" alt="Palworld - Early Access" class="radar-image" onerror="this.src='images/early-access.png'">
+          <h3>FUTURAS PROMESAS</h3>
+          <p>Early Access con futuro</p>
+          <a href="early-access.html" class="ghost">Ver lista</a>
+        </div>
+      </section>
     </section>
   </main>
 
-  <footer class="footer muted center"></footer>
+  <footer id="contacto">
+
+  </footer>
 </body>
 </html>

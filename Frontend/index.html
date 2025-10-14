@@ -3,42 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EPICARDO - Calculadora Epic Games</title>
+  <title>EPICARDO</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
-  <!-- Header compacto -->
-  <header class="main-header">
+  <!-- Preloader -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-content">
+      <h1 class="preloader-title">EPICARDO</h1>
+      <div class="loader"></div>
+    </div>
+  </div>
+
+  <header class="glass-header">
     <div class="container between center">
-      <div class="logo-area">
-        <img src="logo.png" alt="EPICARDO Logo" class="logo-img">
-        <h1 class="logo-text">EPICARDO</h1>
-      </div>
-      <nav class="nav-links">
+      <h1 class="logo">
+        <img src="logo.png" alt="Epicardo Logo" class="logo-img">
+      </h1>
+      <nav>
         <a href="index.html">Inicio</a>
         <a href="radar.html">Radar</a>
+        <button class="notification-btn" onclick="toggleNotifications()" title="Notificaciones">
+          <span class="notification-icon">🔔</span>
+          <span class="notification-badge" id="notificationCount">0</span>
+        </button>
       </nav>
     </div>
   </header>
 
-  <!-- Contenido principal -->
+  <!-- Panel de Notificaciones -->
+  <div id="notificationPanel" class="notification-panel">
+    <div class="notification-header">
+      <h3>📢 Alertas de Ofertas</h3>
+      <button class="close-btn" onclick="toggleNotifications()">×</button>
+    </div>
+    <div class="notification-list" id="notificationList">
+      <!-- Las notificaciones se agregan dinámicamente -->
+    </div>
+  </div>
+
   <main class="container grid">
     <!-- Columna izquierda: Calculadora -->
     <section class="card calculadora fade-in">
       <h2>🧮 Calculadora de Precios</h2>
       <p>Convertí precios de Epic Games a pesos argentinos con IVA e impuestos provinciales.</p>
-
-      <label for="tipo-pago">Método de pago:</label>
-      <select id="tipo-pago">
-        <option value="mercadopago">💳 Mercado Pago</option>
-        <option value="astroplay">🎮 AstroPay</option>
-        <option value="tarjeta_pesos">💵 Tarjeta en pesos</option>
-        <option value="tarjeta_usd">💲 Tarjeta en dólares</option>
-      </select>
-
       <div class="form">
+        <label for="tipo-dolar">Tipo de dólar:</label>
+        <select id="tipo-dolar">
+          <option value="oficial">💵 Dólar Oficial</option>
+          <option value="blue">🕶️ Dólar Blue</option>
+          <option value="tarjeta">💳 Dólar Tarjeta</option>
+          <option value="mayorista">🏛️ Dólar Mayorista</option>
+          <option value="cripto">🪙 Dólar Cripto</option>
+        </select>
+        <br><br>
         <input type="number" id="usd" placeholder="Precio en USD">
         <button onclick="calcularPrecio()">Calcular</button>
       </div>
@@ -48,28 +73,177 @@
     <section class="card cotizaciones fade-in">
       <h2>📊 Cotizaciones de referencia</h2>
       <ul>
-        <li>💳 Mercado Pago: <span id="mercadopago">Cargando...</span></li>
-        <li>🎮 AstroPay: <span id="astroplay">Cargando...</span></li>
-        <li>💵 Tarjeta en pesos: <span id="tarjeta-pesos">Cargando...</span></li>
-        <li>💲 Tarjeta en dólares: <span id="tarjeta-usd">Cargando...</span></li>
+        <li class="oficial">💵 Dólar Oficial: <span id="dolar-oficial">Cargando...</span></li>
+        <li class="blue">🕶️ Dólar Blue: <span id="dolar-blue">Cargando...</span></li>
+        <li class="tarjeta">💳 Dólar Tarjeta: <span id="dolar-tarjeta">Cargando...</span></li>
+        <li class="mayorista">🏛️ Dólar Mayorista: <span id="dolar-mayorista">Cargando...</span></li>
+        <li class="cripto">🪙 Dólar Cripto: <span id="dolar-cripto">Cargando...</span></li>
       </ul>
       <p class="muted">Actualizado: <span id="fecha"></span></p>
     </section>
 
-    <!-- Bloque resultado -->
-    <section class="card resultado fade-in">
+    <!-- Resultado -->
+    <section class="card resultado-final fade-in">
       <h2>🧾 Resultado</h2>
       <div id="resultado" class="resultado-box">
-        <p>⚠️ Ingresá un valor y seleccioná método de pago para calcular.</p>
+        ⚠️ Ingresá un valor válido en USD.
+      </div>
+    </section>
+
+    <!-- Botón de Extensión Estilo Zelda -->
+    <section class="card extension-card fade-in">
+      <div class="zelda-container">
+        <a href="#" class="zelda-btn" id="extensionBtn" target="_blank">
+          <div class="zelda-text">EXTENSIÓN</div>
+          <div class="zelda-glow"></div>
+        </a>
       </div>
     </section>
   </main>
 
-  <script src="epic.js"></script>
+  <!-- Separador visual -->
+  <div class="separador-seccion">
+    <div class="container">
+      <div class="linea-separadora"></div>
+    </div>
+  </div>
+
+  <!-- Sección de Noticias en Tendencia -->
+  <section class="noticias-tendencia">
+    <div class="container">
+      <div class="seccion-header">
+        <h2>🔥 Noticias en Tendencia</h2>
+        <p class="muted">Las últimas novedades del mundo gaming</p>
+      </div>
+      
+      <div class="noticias-grid">
+        <article class="noticia-card">
+          <div class="noticia-imagen">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077 - Epic Games gratis" class="noticia-img" onerror="this.src='images/free-week.png'">
+            <span class="noticia-badge trending">TRENDING</span>
+          </div>
+          <div class="noticia-contenido">
+            <h3>Epic Games regala Cyberpunk 2077 esta semana</h3>
+            <p class="noticia-resumen">La plataforma Epic Games Store sorprende a los jugadores con una de las ofertas más esperadas del año.</p>
+            <div class="noticia-meta">
+              <span class="noticia-fecha">Hace 2 horas</span>
+              <span class="noticia-categoria">Gratis</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="noticia-card">
+          <div class="noticia-imagen">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="Steam Summer Sale - Elden Ring en oferta" class="noticia-img" onerror="this.src='images/under-5.png'">
+            <span class="noticia-badge hot">HOT</span>
+          </div>
+          <div class="noticia-contenido">
+            <h3>Steam Summer Sale: Descuentos hasta 90%</h3>
+            <p class="noticia-resumen">La mayor venta de verano de Steam ya comenzó con miles de juegos a precios increíbles.</p>
+            <div class="noticia-meta">
+              <span class="noticia-fecha">Hace 4 horas</span>
+              <span class="noticia-categoria">Ofertas</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="noticia-card">
+          <div class="noticia-imagen">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg" alt="Palworld - Juego indie viral" class="noticia-img" onerror="this.src='images/hidden-gems.png'">
+            <span class="noticia-badge new">NEW</span>
+          </div>
+          <div class="noticia-contenido">
+            <h3>Nuevo juego indie se convierte en éxito viral</h3>
+            <p class="noticia-resumen">Un desarrollador independiente logra vender más de 1 millón de copias en su primera semana.</p>
+            <div class="noticia-meta">
+              <span class="noticia-fecha">Hace 6 horas</span>
+              <span class="noticia-categoria">Indie</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="noticia-card">
+          <div class="noticia-imagen">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg" alt="Palworld - Actualización Early Access" class="noticia-img" onerror="this.src='images/early-access.png'">
+            <span class="noticia-badge update">UPDATE</span>
+          </div>
+          <div class="noticia-contenido">
+            <h3>Palworld sale de Early Access con nueva actualización</h3>
+            <p class="noticia-resumen">El juego que revolucionó el género survival añade nuevas criaturas y mecánicas.</p>
+            <div class="noticia-meta">
+              <span class="noticia-fecha">Hace 8 horas</span>
+              <span class="noticia-categoria">Early Access</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="noticia-card">
+          <div class="noticia-imagen">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="GTA V - GTA VI preorder" class="noticia-img" onerror="this.src='images/wishlist.png'">
+            <span class="noticia-badge sale">SALE</span>
+          </div>
+          <div class="noticia-contenido">
+            <h3>GTA VI preorder disponible con descuento exclusivo</h3>
+            <p class="noticia-resumen">Rockstar Games anuncia la preventa del juego más esperado del año con beneficios especiales.</p>
+            <div class="noticia-meta">
+              <span class="noticia-fecha">Hace 12 horas</span>
+              <span class="noticia-categoria">Preventa</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="noticia-card">
+          <div class="noticia-imagen">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/504230/header.jpg" alt="Celeste - Bundle Humble Bundle" class="noticia-img" onerror="this.src='images/under-2.png'">
+            <span class="noticia-badge deal">DEAL</span>
+          </div>
+          <div class="noticia-contenido">
+            <h3>Bundle Humble Bundle con 15 juegos por $1</h3>
+            <p class="noticia-resumen">Una oferta increíble que incluye títulos AAA y juegos indie por menos de un dólar.</p>
+            <div class="noticia-meta">
+              <span class="noticia-fecha">Hace 1 día</span>
+              <span class="noticia-categoria">Bundle</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="noticias-footer">
+        <a href="#" class="btn-ver-todas">Ver Todas las Noticias →</a>
+      </div>
+    </div>
+  </section>
+
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("fecha").innerText = new Date().toLocaleString();
+    // Script de respaldo para ocultar el preloader
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        setTimeout(function() {
+          preloader.classList.add('fade-out');
+          setTimeout(function() {
+            preloader.style.display = 'none';
+          }, 500);
+        }, 3500); // 3.5 segundos para que termine la animación
+      }
+    });
+
+    // ===========================
+    // CONFIGURACIÓN DEL ENLACE DE EXTENSIÓN
+    // ===========================
+    document.addEventListener('DOMContentLoaded', function() {
+      const extensionBtn = document.getElementById('extensionBtn');
+      
+      if (extensionBtn) {
+        // 🔗 CAMBIA ESTE ENLACE POR EL DE TU EXTENSIÓN:
+        const downloadLink = 'https://chrome.google.com/webstore/category/extensions'; // <-- PONER TU ENLACE AQUÍ
+        
+        extensionBtn.href = downloadLink;
+      }
     });
   </script>
+  <script src="epic.js"></script>
+  <script src="games.js"></script>
+  <script src="notifications.js"></script>
 </body>
 </html>

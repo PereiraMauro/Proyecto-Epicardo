@@ -1,0 +1,360 @@
+{
+  "games": [
+    {
+      "id": "cyberpunk-2077",
+      "name": "Cyberpunk 2077",
+      "developer": "CD Projekt RED",
+      "publisher": "CD Projekt",
+      "genre": ["RPG", "Action", "Open World"],
+      "releaseDate": "2020-12-10",
+      "description": "Un RPG de mundo abierto ambientado en Night City, una megalópolis obsesionada con el poder, el glamour y la modificación corporal.",
+      "image": "images/games/cyberpunk-2077.jpg",
+      "screenshots": [
+        "images/games/cyberpunk-1.jpg",
+        "images/games/cyberpunk-2.jpg",
+        "images/games/cyberpunk-3.jpg"
+      ],
+      "basePrice": 59.99,
+      "currentPrice": 29.99,
+      "discount": 50,
+      "rating": 7.2,
+      "tags": ["futuristic", "cyberpunk", "story-rich", "character-customization"],
+      "platforms": ["PC", "PlayStation", "Xbox"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "the-witcher-3",
+      "name": "The Witcher 3: Wild Hunt",
+      "developer": "CD Projekt RED",
+      "publisher": "CD Projekt",
+      "genre": ["RPG", "Fantasy", "Open World"],
+      "releaseDate": "2015-05-19",
+      "description": "Una aventura épica de fantasía medieval donde juegas como Geralt de Rivia, un cazador de monstruos profesional.",
+      "image": "images/games/the-witcher-3.jpg",
+      "screenshots": [
+        "images/games/witcher-1.jpg",
+        "images/games/witcher-2.jpg",
+        "images/games/witcher-3.jpg"
+      ],
+      "basePrice": 29.99,
+      "currentPrice": 9.99,
+      "discount": 67,
+      "rating": 9.7,
+      "tags": ["fantasy", "medieval", "story-rich", "choices-matter"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-14T15:45:00Z"
+    },
+    {
+      "id": "hades",
+      "name": "Hades",
+      "developer": "Supergiant Games",
+      "publisher": "Supergiant Games",
+      "genre": ["Action", "Roguelike", "Indie"],
+      "releaseDate": "2020-09-17",
+      "description": "Un roguelike de acción con arte impresionante que te lleva al inframundo griego.",
+      "image": "images/games/hades.jpg",
+      "screenshots": [
+        "images/games/hades-1.jpg",
+        "images/games/hades-2.jpg",
+        "images/games/hades-3.jpg"
+      ],
+      "basePrice": 24.99,
+      "currentPrice": 12.49,
+      "discount": 50,
+      "rating": 9.5,
+      "tags": ["roguelike", "action", "indie", "greek-mythology"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-13T09:20:00Z"
+    },
+    {
+      "id": "celeste",
+      "name": "Celeste",
+      "developer": "Maddy Makes Games",
+      "publisher": "Maddy Makes Games",
+      "genre": ["Platformer", "Indie", "Puzzle"],
+      "releaseDate": "2018-01-25",
+      "description": "Un plataformero desafiante con historia emotiva sobre una joven que escala una montaña.",
+      "image": "images/games/celeste.jpg",
+      "screenshots": [
+        "images/games/celeste-1.jpg",
+        "images/games/celeste-2.jpg",
+        "images/games/celeste-3.jpg"
+      ],
+      "basePrice": 19.99,
+      "currentPrice": 4.99,
+      "discount": 75,
+      "rating": 9.0,
+      "tags": ["platformer", "indie", "challenging", "story-rich"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-12T14:10:00Z"
+    },
+    {
+      "id": "stardew-valley",
+      "name": "Stardew Valley",
+      "developer": "ConcernedApe",
+      "publisher": "ConcernedApe",
+      "genre": ["Simulation", "Indie", "Farming"],
+      "releaseDate": "2016-02-26",
+      "description": "Un simulador de granja relajante y adictivo donde construyes tu vida en el campo.",
+      "image": "images/games/stardew-valley.jpg",
+      "screenshots": [
+        "images/games/stardew-1.jpg",
+        "images/games/stardew-2.jpg",
+        "images/games/stardew-3.jpg"
+      ],
+      "basePrice": 14.99,
+      "currentPrice": 7.49,
+      "discount": 50,
+      "rating": 9.3,
+      "tags": ["farming", "simulation", "relaxing", "multiplayer"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Mobile"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-11T11:30:00Z"
+    },
+    {
+      "id": "cuphead",
+      "name": "Cuphead",
+      "developer": "Studio MDHR",
+      "publisher": "Studio MDHR",
+      "genre": ["Action", "Platformer", "Indie"],
+      "releaseDate": "2017-09-29",
+      "description": "Un shoot 'em up con arte estilo dibujos animados de los años 30.",
+      "image": "images/games/cuphead.jpg",
+      "screenshots": [
+        "images/games/cuphead-1.jpg",
+        "images/games/cuphead-2.jpg",
+        "images/games/cuphead-3.jpg"
+      ],
+      "basePrice": 19.99,
+      "currentPrice": 9.99,
+      "discount": 50,
+      "rating": 8.9,
+      "tags": ["challenging", "retro", "co-op", "boss-rush"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-10T16:45:00Z"
+    },
+    {
+      "id": "dead-cells",
+      "name": "Dead Cells",
+      "developer": "Motion Twin",
+      "publisher": "Motion Twin",
+      "genre": ["Action", "Roguelike", "Metroidvania"],
+      "releaseDate": "2018-08-07",
+      "description": "Un metroidvania roguelike con combate fluido y mecánicas de progresión únicas.",
+      "image": "images/games/dead-cells.jpg",
+      "screenshots": [
+        "images/games/deadcells-1.jpg",
+        "images/games/deadcells-2.jpg",
+        "images/games/deadcells-3.jpg"
+      ],
+      "basePrice": 24.99,
+      "currentPrice": 12.49,
+      "discount": 50,
+      "rating": 9.1,
+      "tags": ["metroidvania", "roguelike", "action", "procedural"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Mobile"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-09T13:20:00Z"
+    },
+    {
+      "id": "palworld",
+      "name": "Palworld",
+      "developer": "Pocketpair",
+      "publisher": "Pocketpair",
+      "genre": ["Survival", "Open World", "Early Access"],
+      "releaseDate": "2024-01-19",
+      "description": "Un juego de supervivencia con criaturas coleccionables en un mundo abierto.",
+      "image": "images/games/palworld.jpg",
+      "screenshots": [
+        "images/games/palworld-1.jpg",
+        "images/games/palworld-2.jpg",
+        "images/games/palworld-3.jpg"
+      ],
+      "basePrice": 29.99,
+      "currentPrice": 29.99,
+      "discount": 0,
+      "rating": 8.5,
+      "tags": ["survival", "creatures", "multiplayer", "early-access"],
+      "platforms": ["PC", "Xbox"],
+      "isFree": false,
+      "isEarlyAccess": true,
+      "lastUpdated": "2024-01-20T08:15:00Z"
+    },
+    {
+      "id": "outer-wilds",
+      "name": "Outer Wilds",
+      "developer": "Mobius Digital",
+      "publisher": "Annapurna Interactive",
+      "genre": ["Adventure", "Puzzle", "Indie"],
+      "releaseDate": "2019-05-28",
+      "description": "Un juego de exploración espacial con mecánicas únicas de tiempo y física.",
+      "image": "images/games/outer-wilds.jpg",
+      "screenshots": [
+        "images/games/outerwilds-1.jpg",
+        "images/games/outerwilds-2.jpg",
+        "images/games/outerwilds-3.jpg"
+      ],
+      "basePrice": 24.99,
+      "currentPrice": 12.49,
+      "discount": 50,
+      "rating": 9.4,
+      "tags": ["exploration", "space", "time-loop", "mystery"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-08T10:30:00Z"
+    },
+    {
+      "id": "disco-elysium",
+      "name": "Disco Elysium",
+      "developer": "ZA/UM",
+      "publisher": "ZA/UM",
+      "genre": ["RPG", "Detective", "Story Rich"],
+      "releaseDate": "2019-10-15",
+      "description": "Un RPG narrativo con mecánicas de detective únicas y un mundo profundamente inmersivo.",
+      "image": "images/games/disco-elysium.jpg",
+      "screenshots": [
+        "images/games/disco-1.jpg",
+        "images/games/disco-2.jpg",
+        "images/games/disco-3.jpg"
+      ],
+      "basePrice": 39.99,
+      "currentPrice": 19.99,
+      "discount": 50,
+      "rating": 9.6,
+      "tags": ["detective", "story-rich", "choices-matter", "noir"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-07T14:45:00Z"
+    },
+    {
+      "id": "terraria",
+      "name": "Terraria",
+      "developer": "Re-Logic",
+      "publisher": "Re-Logic",
+      "genre": ["Sandbox", "Adventure", "Indie"],
+      "releaseDate": "2011-05-16",
+      "description": "Un sandbox de construcción y aventura 2D con elementos de supervivencia.",
+      "image": "images/games/terraria.jpg",
+      "screenshots": [
+        "images/games/terraria-1.jpg",
+        "images/games/terraria-2.jpg",
+        "images/games/terraria-3.jpg"
+      ],
+      "basePrice": 9.99,
+      "currentPrice": 1.99,
+      "discount": 80,
+      "rating": 9.8,
+      "tags": ["sandbox", "building", "adventure", "multiplayer"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Mobile"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-06T12:00:00Z"
+    },
+    {
+      "id": "limbo",
+      "name": "Limbo",
+      "developer": "Playdead",
+      "publisher": "Playdead",
+      "genre": ["Puzzle", "Platformer", "Indie"],
+      "releaseDate": "2011-08-02",
+      "description": "Un puzzle plataformero con atmósfera única y arte en blanco y negro.",
+      "image": "images/games/limbo.jpg",
+      "screenshots": [
+        "images/games/limbo-1.jpg",
+        "images/games/limbo-2.jpg",
+        "images/games/limbo-3.jpg"
+      ],
+      "basePrice": 9.99,
+      "currentPrice": 0.99,
+      "discount": 90,
+      "rating": 8.7,
+      "tags": ["puzzle", "atmospheric", "indie", "artistic"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Mobile"],
+      "isFree": false,
+      "isEarlyAccess": false,
+      "lastUpdated": "2024-01-05T09:30:00Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "free-week",
+      "name": "GRATIS DE LA SEMANA",
+      "description": "Todos los títulos que Epic regala esta semana",
+      "icon": "🎁",
+      "color": "#19d4a6"
+    },
+    {
+      "id": "under-5",
+      "name": "A MENOS DE 5 DÓLARES",
+      "description": "Juegos recomendados por menos de 5 USD",
+      "icon": "💰",
+      "color": "#f59e0b"
+    },
+    {
+      "id": "under-2",
+      "name": "A MENOS DE 2 DÓLARES",
+      "description": "Joyas ultra baratas que valen la pena",
+      "icon": "💎",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "hidden-gems",
+      "name": "JOYAS OCULTAS",
+      "description": "Descubrí juegos que quizás no viste",
+      "icon": "💎",
+      "color": "#06b6d4"
+    },
+    {
+      "id": "wishlist",
+      "name": "CUANDO ESTÉN EN OFERTA",
+      "description": "Seguimiento de wishlist para comprar mejor",
+      "icon": "📋",
+      "color": "#10b981"
+    },
+    {
+      "id": "early-access",
+      "name": "FUTURAS PROMESAS",
+      "description": "Early Access con futuro",
+      "icon": "🚀",
+      "color": "#f59e0b"
+    }
+  ],
+  "priceHistory": {
+    "cyberpunk-2077": [
+      {"date": "2024-01-01", "price": 59.99},
+      {"date": "2024-01-08", "price": 29.99},
+      {"date": "2024-01-15", "price": 29.99}
+    ],
+    "the-witcher-3": [
+      {"date": "2024-01-01", "price": 29.99},
+      {"date": "2024-01-10", "price": 9.99},
+      {"date": "2024-01-14", "price": 9.99}
+    ],
+    "hades": [
+      {"date": "2024-01-01", "price": 24.99},
+      {"date": "2024-01-05", "price": 12.49},
+      {"date": "2024-01-13", "price": 12.49}
+    ]
+  }
+}
+
+
+
+
+
+
+
