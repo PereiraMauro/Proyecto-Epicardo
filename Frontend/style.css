@@ -70,6 +70,43 @@ html, body {
   color: var(--accent);
 }
 
+.btn-download {
+  display: inline-block;
+  margin-left: 0.3rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de brillo animado */
+.btn-download::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease;
+}
+
+.btn-download:hover::before {
+  left: 130%;
+}
+
+.btn-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgb(31, 104, 110);
+}
+
+
 /* ---------------- CONTENEDOR ---------------- */
 .container {
   max-width: 1150px;
@@ -378,4 +415,163 @@ button:hover {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   object-fit: cover;
+}
+.mas-funciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 3rem 6rem;
+  background-color: #1c2833;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.mas-funciones .contenido {
+  flex: 1;
+  color: #dfe6ed;
+}
+
+.mas-funciones h2 {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.mas-funciones p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #bfc9d9;
+}
+
+.mas-funciones .imagenes {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.mas-funciones img {
+  width: 48%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+/* Estilos generales del cuerpo */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.epicardo-info {
+  border: 2px solid #00bfff;   /* color celeste tipo Steam */
+  border-radius: 10px;          /* bordes redondeados */
+  padding: 20px;                /* espacio interno */
+  background-color: #1f1f1f;    /* un gris oscuro de fondo */
+  margin: 20px 0;               /* espacio arriba y abajo */
+  max-width: 600px;             /* ancho máximo del recuadro */
+}
+
+/* Estilos generales del cuerpo */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal del footer */
+.site-footer {
+    background-color: #141b27;
+    color: #ffffff;
+    padding: 40px 20px;
+}
+
+/* Contenedor para alinear las columnas */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Para que se adapte en móviles */
+}
+
+/* Estilo de cada columna */
+.footer-column {
+    flex: 1;
+    min-width: 200px; /* Ancho mínimo para cada columna */
+    margin: 10px;
+}
+
+.footer-column h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+
+.footer-column p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Estilo de la lista de categorías */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+/* Estilo de los enlaces */
+.footer-column a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: #cccccc; /* Color al pasar el mouse */
+}
+
+/* Estilo para el ícono de red social */
+.social-icon {
+    font-size: 24px; /* Tamaño del ícono */
+}
+
+/* Media Query para hacer el diseño responsivo en pantallas pequeñas */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column {
+        margin-bottom: 20px;
+    }
+}
+
+/* ==== Redes del Footer ==== */
+.footer-column .social-icons {
+  display: flex;
+  align-items: center;
+  gap: 25px; 
+  margin-top: 10px;
+}
+
+.footer-column .social-icons a {
+  color: #bfc9d9;
+  font-size: 1.5rem; 
+  transition: all 0.3s ease;
+}
+
+.footer-column .social-icons a:hover {
+  color: #1fa8ff; 
+  transform: scale(1.2); 
+  text-shadow: 0 0 10px rgba(31, 168, 255, 0.6);
+}
+
+html {
+  scroll-behavior: smooth;
 }
