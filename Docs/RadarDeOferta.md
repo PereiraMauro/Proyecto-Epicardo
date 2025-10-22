@@ -19,4 +19,5 @@
 1.**EL RADAR TIENE LOS DATOS** de  epic game.
 2.**SE ENVIA LA INFORMACION** con precio en USD.
 3.**SE CALCULA EL PRECIO FINAL EN ars**  con impuestos.
-4.**SE MUESTRA EL PRECIO FINAL** en el frontend.
+
+4.**SE MUESTRA EL PRECIO FINAL** en la interfaz.
