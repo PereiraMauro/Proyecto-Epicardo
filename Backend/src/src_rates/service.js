@@ -1,6 +1,6 @@
 import cron from "node-cron";
 import { providers } from "./providers.js";
-import { cacheGet, cacheSet } from "../cache.js";
+import { cacheGet, cacheSet } from "../src_rates/cache.js";
 
 const KEY = "rates:usd-ars";
 const TTL = Number(process.env.CACHE_TTL_MS || 15 * 60 * 1000);
